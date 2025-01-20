@@ -4,7 +4,7 @@ import base64
 import time
 import urllib.parse
 import requests
-
+import krakenex
 
 def get_kraken_signature(url_path, data, secret):
     
@@ -22,13 +22,33 @@ def get_kraken_signature(url_path, data, secret):
 
 def kraken_request(url_path, data, api_key, api_secret):
     # headers
-    full_url = 'https://api.kraken.com' + url_path
+    sign = get_kraken_signature(url_path, data, api_secret)
     headers = {
-        'API-Key': api_key, 'API-Sign': get_kraken_signature(url_path, data, api_secret)}
+        
+        'API-Key': api_key, 
+        'API-Sign': sign}
     # send request
-    response = requests.post(full_url, headers=headers, data=data)
+    response = requests.post(url_path, headers=headers, data=data)
     return response
 
+def verify_kraken_api(api_key, api_secret):
+    # Initialize the Kraken API client
+    api = krakenex.API(key=api_key, secret=api_secret)
+    
+    try:
+        # Attempt to retrieve your account balance
+        response = api.query_private('Balance')
+        
+        if response.get('error'):
+            print(f"Error: {response['error']}")
+            return False
+        else:
+            print("API key and secret are working correctly.")
+            return True
+    except Exception as e:
+        print(f"An exception occurred: {e}")
+        return False
+    
 
 
 
