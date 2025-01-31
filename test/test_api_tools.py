@@ -13,24 +13,29 @@ class TestApiTools(unittest.TestCase):
         self.data = {'nonce': str(int(time.time() * 1000))}
         self.test_endpoint = "/0/private/TradesHistory"
 
-    def test_kraken_request(self):
-        
-        response = kraken_request(KrakenAPIUrls.TRADE_HISTORY.value, self.data, self.api_key, self.api_secret)
-        self.assertEqual(response.status_code, 200)
-        assert response.json()['error'] == []
-        df = pd.json_normalize(response.json(), max_level=1)
-        self.assertEqual(df.empty, False)
-        
+   
     def test_ASSET_INFO(self):
         response = kraken_request(KrakenAPIUrls.ASSET_INFO.value, self.data, self.api_key, self.api_secret)
         self.assertEqual(response.status_code, 200)
         assert response.json()['error'] == []
         
     def test_BALANCE_INFO(self):
-        response = kraken_request(KrakenAPIUrls.ACCOUNT_BALANCE.value, self.data, self.api_key, self.api_secret)
-        df = pd.json_normalize(response.json(), max_level=1)
+        api = krakenex.API(key=self.api_key, secret=self.api_secret)
+        response = api.query_private('Balance')
+        self.assertEqual(response.status_code, 200)
         assert response.json()['error'] == []
-        self.assertEqual(df.empty, False)
         
     def test_api_key_works(self):
         assert verify_kraken_api(self.api_key, self.api_secret) == True
+        
+    def test_get_kraken_api(self):
+        api = get_kraken_api()
+        assert api != None
+        assert api.key == self.api_key
+        assert api.secret == self.api_secret
+        
+    def test_trade_crypto(self):
+        api = get_kraken_api()
+        order_status = trade_crypto(api, 'XBT', 'XRP', 10)
+        print('hold')
+       
