@@ -1,0 +1,20 @@
+from enum import Enum
+
+class KrakenAPIUrls(Enum):
+    BASE_URL = "https://api.kraken.com"
+    PUBLIC_URL = f"{BASE_URL}/0/public"
+    PRIVATE_URL = f"{BASE_URL}/0/private"
+    ASSET_INFO = f"{PUBLIC_URL}/Assets"
+    TICKER_INFO = f"{PUBLIC_URL}/Ticker"
+    ORDER_BOOK = f"{PUBLIC_URL}/Depth"
+    TRADE_BALANCE = f"{PRIVATE_URL}/TradeBalance"
+    OPEN_ORDERS = f"{PRIVATE_URL}/OpenOrders"
+    CLOSED_ORDERS = f"{PRIVATE_URL}/ClosedOrders"
+    ACCOUNT_BALANCE = f"{PRIVATE_URL}/Balance"
+    TRADE_HISTORY = f"{PRIVATE_URL}/TradesHistory"
+    LEDGERS = f"{PRIVATE_URL}/Ledgers"
+    QUERY_ORDERS = f"{PRIVATE_URL}/QueryOrders"
+    QUERY_TRADES = f"{PRIVATE_URL}/QueryTrades"
+    OPEN_POSITIONS = f"{PRIVATE_URL}/OpenPositions"
+    ADD_ORDER = f"{PRIVATE_URL}/AddOrder"
+    CANCEL_ORDER = f"{PRIVATE_URL}/CancelOrder"
