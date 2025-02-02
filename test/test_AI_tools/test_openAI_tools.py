@@ -3,17 +3,14 @@ import unittest
 import json
 from openai import OpenAI
 import pandas as pd
-from ai_tools.ai_enum_classes import AICryptoAnalystPrompts
+from ai_tools.ai_enum_classes import AICryptoAnalystPrompts, OpenAIModels
 from ai_tools.ai_instagator import AIInstagator
 
 class test_AIInstagator(unittest.TestCase):
     
     def setUp(self):
-        self.messages = [
-        {"role": "system", "content": AICryptoAnalystPrompts.SYSTEM_PROMPT.value},
-        {"role": "user", "content": AICryptoAnalystPrompts.USER_PROMPT.value}
-      ]
-        self.model = 'gpt-4o-mini'
+        self.messages = AICryptoAnalystPrompts.MESSAGES.value
+        self.model = OpenAIModels.GPT_Mini.value
     
     def test_get_openai_key(self):
         '''test if OpenAI key is set''' 
@@ -63,4 +60,11 @@ class test_AIInstagator(unittest.TestCase):
         ai_response_df = ai_instagator.convert_response_to_dataframe(ai_response)
         assert ['coin_symbol', 'coin_current_price', 'expected_gain_percentage'] == list(ai_response_df.columns)
         
- 
+
+    def test_get_coin_analysis(self):
+        '''test if AI can analyze coins''' 
+        
+        ai_instagator = AIInstagator(api_key=os.getenv('OPENAI_API_KEY'))
+        ai_response = ai_instagator.prompt_ai(messages=self.messages, model=self.model)
+        ai_response_df = ai_instagator.convert_response_to_dataframe(ai_response)
+        ai_instagator.get_coin_analysis(ai_response_df)

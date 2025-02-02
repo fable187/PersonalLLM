@@ -1,5 +1,6 @@
 import unittest
 from exchange_tools.exchange_tool import KrakenAPIClient, AssetPair, TradeExecutor
+import pandas as pd
 from exchange_tools.kraken_tools import get_kraken_api, get_trading_pair_symbol
 class TestExchangeTools(unittest.TestCase):
     
@@ -14,12 +15,21 @@ class TestExchangeTools(unittest.TestCase):
         assets = self.kraken_api.fetch_assets()
         print(assets)
         self.assertIsInstance(assets, dict)
+        
+    def test_fetch_asset_history(self):
+        assets = self.kraken_api.fetch_assets()
+        asset_pair = AssetPair('XBT', 'USD', assets)
+        pair_symbol = asset_pair.get_pair_symbol()
+        asset_history = self.kraken_api.fetch_asset_history(pair_symbol, 1690000000, 1690000000)
+        print(asset_history)
+        self.assertIn('result', asset_history)
     
     def test_fetch_ticker(self):
         assets = self.kraken_api.fetch_assets()
         asset_pair = AssetPair('XBT', 'USD', assets)
         pair_symbol = asset_pair.get_pair_symbol()
         ticker = self.kraken_api.fetch_ticker(pair_symbol)
+        ticket_df = pd.json_normalize(ticker)
         print(ticker)
         self.assertIn('a', ticker)
         
