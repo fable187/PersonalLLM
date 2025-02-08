@@ -22,7 +22,7 @@ class TestExchangeTools(unittest.TestCase):
         pair_symbol = asset_pair.get_pair_symbol()
         asset_history = self.kraken_api.fetch_asset_history(pair_symbol, 1690000000, 1690000000)
         print(asset_history)
-        self.assertIn('result', asset_history)
+        assert 'XXBTZUSD' in asset_history
     
     def test_fetch_ticker(self):
         assets = self.kraken_api.fetch_assets()

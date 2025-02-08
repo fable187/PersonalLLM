@@ -58,13 +58,4 @@ class test_AIInstagator(unittest.TestCase):
         ai_instagator = AIInstagator(api_key=os.getenv('OPENAI_API_KEY'))
         ai_response = ai_instagator.prompt_ai(messages=self.messages, model=self.model)
         ai_response_df = ai_instagator.convert_response_to_dataframe(ai_response)
-        assert ['coin_symbol', 'coin_current_price', 'expected_gain_percentage'] == list(ai_response_df.columns)
-        
-
-    def test_get_coin_analysis(self):
-        '''test if AI can analyze coins''' 
-        
-        ai_instagator = AIInstagator(api_key=os.getenv('OPENAI_API_KEY'))
-        ai_response = ai_instagator.prompt_ai(messages=self.messages, model=self.model)
-        ai_response_df = ai_instagator.convert_response_to_dataframe(ai_response)
-        ai_instagator.get_coin_analysis(ai_response_df)
+        assert ['coin_symbol', 'coin_current_price', 'expected_gain_percentage','weight'] == list(ai_response_df.columns)

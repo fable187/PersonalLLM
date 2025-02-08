@@ -41,13 +41,7 @@ class AIInstagator:
         for crypto in crypto_list:
             self.buy_crypto(crypto['coin_symbol'], crypto['weight'])
             
-    def get_coin_analysis(self, ai_response_df):
-        # Placeholder for getting coin analysis
-    
-        
-        ai_response = self.prompt_ai(messages=self.messages, model=self.model)
-        ai_response_df = self.convert_response_to_dataframe(ai_response)
-        print(ai_response)
+
         
             
 
