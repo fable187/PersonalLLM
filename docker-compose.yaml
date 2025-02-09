@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  my_service:
+    image: us-central1-docker.pkg.dev/trading-app-project-450322/trading-app-repo/app:latest
+    ports:
+      - "8080:80"
+    environment:
+      - PORT=80
