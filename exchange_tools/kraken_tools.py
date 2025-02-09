@@ -14,6 +14,7 @@ def get_kraken_api():
     api = krakenex.API(key=api_key, secret=api_secret)
     return api
 
+
 def get_kraken_signature(url_path, data, secret):
     
     # encode API data
@@ -56,6 +57,7 @@ def verify_kraken_api(api_key, api_secret):
         print(f"An exception occurred: {e}")
         return False
     
+
     
 def get_trading_pair_symbol(crypto_a: str, crypto_b: str) -> str:
     """
@@ -98,6 +100,9 @@ def get_trading_pair_symbol(crypto_a: str, crypto_b: str) -> str:
 
     except requests.RequestException as e:
         raise Exception(f"HTTP Request failed: {e}")
+    
+    
+    
     
 
 

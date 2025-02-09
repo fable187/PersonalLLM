@@ -16,6 +16,13 @@ class KrakenAPIClient:
         if response.get('error'):
             raise Exception(f"Error fetching assets: {response['error']}")
         return response['result']
+    
+    def fetch_asset_history(self, asset: str, start: int, end: int):
+        '''fetch asset history from Kraken'''
+        response = self.api.query_public('Trades', {'pair': asset})
+        if response.get('error'):
+            raise Exception(f"Error fetching asset history: {response['error']}")
+        return response['result']
 
     def fetch_ticker(self, pair: str):
         """
