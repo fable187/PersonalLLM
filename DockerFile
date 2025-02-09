@@ -1,6 +1,13 @@
-FROM python:3.9-slim
+FROM python:3.10-slim  
+
 WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["python", "core_app/app.py"]
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .  
+
+# Important: Set the working directory INSIDE the container to core_app
+WORKDIR /app/core_app
+
+CMD ["python", "sample_app.py"] 
