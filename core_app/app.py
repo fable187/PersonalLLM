@@ -13,14 +13,10 @@ def hello():
     return """
     <html>
         <head>
-            <title>Anna Gilbert</title>
+            <title>To my Wing Man</title>
         </head>
         <body>
-            <h1>To Anna Gilbert, my amazing hokis, perfect always</h1>
-            <p>You are my heart, you are my breath.</p>
-            <p>You are the beat beat beneath my chest.</p>
-            <p>You are the stars that light my night</p>
-            <p>I'll follow you whether wrong or right.</p>
+            <h1>Hello Mr. Peters. </h1>
         </body>
     </html>
     """

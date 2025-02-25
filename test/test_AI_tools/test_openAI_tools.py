@@ -40,6 +40,7 @@ class test_AIInstagator(unittest.TestCase):
         
         ai_instagator = AIInstagator(api_key=os.getenv('OPENAI_API_KEY'))
         ai_response = ai_instagator.prompt_ai(messages=self.messages, model=self.model)
+        print(ai_response)
         assert ai_response
         
     def test_ai_response_has_correct_keys(self):
