@@ -10,4 +10,4 @@ COPY . .
 # Important: Set the working directory INSIDE the container to core_app
 WORKDIR /app/core_app
 
-CMD ["python", "sample_app.py"] 
+CMD ["python", "app.py"] 

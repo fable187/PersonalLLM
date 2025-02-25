@@ -8,5 +8,6 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": true,
-    "docker.composeCommand": "docker-compose"
+    "docker.composeCommand": "docker-compose",
+    "pythonTestExplorer.testplanPath": "C:\\Users\\gaela\\PersonalLLM\\PersonalLLM\\test"
 }
