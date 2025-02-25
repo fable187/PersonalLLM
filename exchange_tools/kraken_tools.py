@@ -7,10 +7,13 @@ import requests
 import krakenex
 import os
 from common.exceptions import *
+from gcp_tools.gcp_utils import get_secret
+
 
 def get_kraken_api():
-    api_key = os.environ.get('KRAKEN_PUB')
-    api_secret = os.environ.get('KRAKEN_SEC')
+    api_key, api_secret = get_secret()
+    # api_key = os.environ.get('KRAKEN_PUB')
+    # api_secret = os.environ.get('KRAKEN_SEC')
     api = krakenex.API(key=api_key, secret=api_secret)
     return api
 
