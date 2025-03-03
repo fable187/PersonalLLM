@@ -30,7 +30,7 @@ class TestExchangeTools(unittest.TestCase):
         pair_symbol = asset_pair.get_pair_symbol()
         ticker = self.kraken_api.fetch_ticker(pair_symbol)
         ticket_df = pd.json_normalize(ticker)
-        print(ticker)
+        print(ticket_df)
         self.assertIn('a', ticker)
         
     def test_get_trading_pair_symbol(self):
@@ -51,5 +51,13 @@ class TestExchangeTools(unittest.TestCase):
         balance = self.kraken_api.get_balance()
         print(balance)
         self.assertIn('XXBT', balance)
-        
+
+    def test_get_ohlc(self):
+        assets = self.kraken_api.fetch_assets()
+        asset_pair = AssetPair('XBT', 'USD', assets)
+        pair_symbol = asset_pair.get_pair_symbol()
+        ticker = self.kraken_api.get_ohlc(pair_symbol)
+        ticket_df = pd.json_normalize(ticker)
+        print(ticket_df)
+        self.assertIn('a', ticker)
     

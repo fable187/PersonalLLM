@@ -16,8 +16,8 @@ def get_secret():
     api_key = secrets["kraken_api_key"]
     api_secret = secrets["kraken_api_secret"]
 
-    print(f"API Key: {api_key}") # Handle these securely!
-    print(f"API Secret: {api_secret}") # Handle these securely!
+    print(f"API Key retrieved") # Handle these securely!
+    print(f"API Secret retrieved") # Handle these securely!
     return api_key, api_secret
 
 
