@@ -1,5 +1,6 @@
 import unittest
 from gcp_tools.gcp_utils import get_secret
+from gcp_tools.project_enums import GCPSecretSamples
 from core_app.app import test_connection
 from gcp_tools.gcp_utils import get_identity_token
 from gcp_tools.project_enums import CloudRunServiceUrl
@@ -10,6 +11,9 @@ from gcp_tools.project_enums import CloudRunServiceUrl
 class TestAccessSecrets(unittest.TestCase):
     def setUp(self):
         pass
+
+    def test_get_sample_secret(self):
+        key, secret = get_secret()
     
     def test_get_secret(self):
         key, secret = get_secret()

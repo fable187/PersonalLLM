@@ -2,3 +2,5 @@
 *.pyd
 __pycache__/
 .vscode/
+MODEL
+workspace.ipynb

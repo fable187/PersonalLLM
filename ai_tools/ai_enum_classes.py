@@ -6,6 +6,7 @@ class OpenAIModels(Enum):
     GPT_3_5_TURBO_16K = 'gpt-3.5-turbo-16k'
     GPT_4_8K = 'gpt-4-8k'
     GPT_Mini = 'gpt-4o-mini'
+    
 class AICryptoAnalystPrompts(Enum):
     # 1. ChatGPT
     SYSTEM_PROMPT = 'You are an expert crypto analyst.'

@@ -3,6 +3,14 @@ import krakenex
 class KrakenAPIClient:
     def __init__(self, api: krakenex.API):
         self.api = api
+
+    def get_ohlc(self, pair: str, interval: str, since: int, until: int):
+        '''fetch OHLC from Kraken'''
+        response = self.api.query_public('OHLC', {'pair': pair, 'interval': interval, 'since': since, 'until': until})
+        if response.get('error'):
+            raise Exception(f"Error fetching OHLC: {response['error']}")
+        return response['result']
+        
     def get_balance(self):
         '''fetch balance from Kraken'''
         response = self.api.query_private('Balance')
