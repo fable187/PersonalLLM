@@ -1,20 +1,19 @@
 import os
 from google.cloud import secretmanager
-from gcp_tools.project_enums import KrakenReadOnlySecret
+from gcp_tools.project_enums import GCPSecret
 from google.auth import default
 from google.auth.transport.requests import AuthorizedSession
 import json
 
-def get_secret():
+def get_secret( gcp_secret: GCPSecret):
     client = secretmanager.SecretManagerServiceClient()
-    name = KrakenReadOnlySecret.KEY_LOCATION
-    response = client.access_secret_version(request={"name": name})
+    response = client.access_secret_version(request={"name": gcp_secret.NAME})
     payload = response.payload.data.decode("UTF-8") # payload is the entire JSON string
 
     secrets = json.loads(payload)
 
-    api_key = secrets["kraken_api_key"]
-    api_secret = secrets["kraken_api_secret"]
+    api_key = secrets[secrets_key]
+    api_secret = secrets[secrets_value]
 
     print(f"API Key retrieved") # Handle these securely!
     print(f"API Secret retrieved") # Handle these securely!
