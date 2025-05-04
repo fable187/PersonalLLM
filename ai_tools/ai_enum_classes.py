@@ -7,6 +7,12 @@ class OpenAIModels(Enum):
     GPT_4_8K = 'gpt-4-8k'
     GPT_Mini = 'gpt-4o-mini'
     
+
+# class AnthropicModels(Enum):
+
+   
+
+
 class AICryptoAnalystPrompts(Enum):
     # 1. ChatGPT
     SYSTEM_PROMPT = 'You are an expert crypto analyst.'
